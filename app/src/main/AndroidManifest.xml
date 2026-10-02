@@ -21,6 +21,11 @@
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="PackageVisibilityPolicy,QueryAllPackagesPermission" />
 
+    <queries>
+        <!-- LibreHU: light / dark theme of LibreHU Launcher. -->
+        <provider android:authorities="org.librehu.launcher.theme" />
+    </queries>
+
     <application
         android:name=".ViPER4AndroidApp"
         android:allowBackup="true"

@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
+import androidx.compose.material.icons.filled.DirectionsCar
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LibraryMusic
 import androidx.compose.material.icons.filled.PowerSettingsNew
@@ -53,6 +54,7 @@ import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.llsl.viper4android.R
 import com.llsl.viper4android.effect.EffectState
+import com.llsl.viper4android.headunit.JancarAudioClient
 import com.llsl.viper4android.ui.components.UiDimens
 import com.llsl.viper4android.ui.screens.debug.DebugLogDialog
 import com.llsl.viper4android.ui.screens.device.DeviceDialog
@@ -71,7 +73,10 @@ import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
+fun MainScreen(
+    onOpenVehicle: () -> Unit = {},
+    viewModel: MainViewModel = hiltViewModel(),
+) {
     LifecycleEventEffect(Lifecycle.Event.ON_STOP) {
         viewModel.saveSettingsOnBackground()
     }
@@ -103,6 +108,8 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                 ""
             }
         }
+
+    val headUnitSupported = remember { JancarAudioClient.isSupported(context) }
 
     val clearAllProgressStr = stringResource(R.string.preset_clear_all_progress)
     val clearedStr = stringResource(R.string.preset_cleared)
@@ -318,6 +325,14 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                             Icon(
                                 Icons.Default.BugReport,
                                 contentDescription = stringResource(R.string.debug_log_title),
+                            )
+                        }
+                    }
+                    if (headUnitSupported) {
+                        IconButton(onClick = onOpenVehicle) {
+                            Icon(
+                                Icons.Filled.DirectionsCar,
+                                contentDescription = stringResource(R.string.vehicle_open),
                             )
                         }
                     }

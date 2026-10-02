@@ -74,7 +74,11 @@ class VehicleAudioViewModel
                 val params = mutableMapOf<Int, HuParam>()
                 for (id in SCALAR_IDS) readParam(id)?.let { params[id] = it }
 
-                val eqCount = client.getParam(HeadUnitParam.EQ_COUNT)?.coerceIn(0, MAX_EQ_BANDS) ?: 0
+                val reportedEqCount = client.getParam(HeadUnitParam.EQ_COUNT)?.coerceIn(0, MAX_EQ_BANDS) ?: 0
+                // ROHM BD37534 (EQ_COUNT = 6) has no real 6-band EQ: in libJanCarIVI.so, bands 0-2 write the
+                // same treble/middle/bass gain registers as the Tone section, and bands 3-5 select the
+                // frequency/Q of those filters. Showing them as EQ bands would duplicate Tone with wrong labels.
+                val eqCount = if (reportedEqCount == BD37534_EQ_COUNT) 0 else reportedEqCount
                 val bands = mutableListOf<Int>()
                 val freqs = mutableMapOf<Int, Int>()
                 for (band in 0 until eqCount) {
@@ -124,6 +128,7 @@ class VehicleAudioViewModel
 
         private companion object {
             const val MAX_EQ_BANDS = 31
+            const val BD37534_EQ_COUNT = 6
             val SCALAR_IDS =
                 intArrayOf(
                     HeadUnitParam.BALANCE_FADE,

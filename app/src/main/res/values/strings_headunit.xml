@@ -34,7 +34,7 @@
 
     <string name="desc_vehicle_fader">Moves the sound between the four speakers. This is done by the head unit audio processor, after Android and ViPER.&lt;br&gt;&lt;br&gt;• &lt;b&gt;Balance&lt;/b&gt; — left / right.&lt;br&gt;• &lt;b&gt;Fader&lt;/b&gt; — front / rear.</string>
     <string name="desc_vehicle_tone">Bass, middle and treble controls of the head unit audio processor. They apply to every source (radio, Bluetooth, Android), unlike ViPER effects which only process Android audio.</string>
-    <string name="desc_vehicle_eq">Equalizer built into the head unit audio processor. The number of bands and their frequencies come from the chip (6 on the ROHM BD37534, more on DSP boards).</string>
+    <string name="desc_vehicle_eq">Equalizer built into the head unit audio processor (DSP boards: ROHM BU32107, AKM AK7604). The number of bands and their frequencies come from the chip. On the ROHM BD37534 the equalizer is the Tone section (3 bands).</string>
     <string name="desc_vehicle_sub">Loudness (bass and treble boost at low volume), subwoofer level and filters, and listening position presets of the audio processor. Only the settings your chip supports are shown.</string>
     <string name="desc_vehicle_delay">Per-speaker delay (time alignment) so that the sound of every speaker reaches the listening position at the same time. Only available on DSP boards (ROHM BU32107, AKM AK7604).</string>
 </resources>

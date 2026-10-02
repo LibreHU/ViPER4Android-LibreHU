@@ -12,6 +12,9 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_ROUTING"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- LibreHU: saves the external amplifier switch of Jancar head units (Settings.Global). -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"
         tools:ignore="RequestInstallPackagesPolicy" />
     <uses-permission

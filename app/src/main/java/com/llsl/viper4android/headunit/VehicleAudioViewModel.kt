@@ -30,6 +30,10 @@ data class VehicleAudioState(
     val params: Map<Int, HuParam> = emptyMap(),
     val eqBands: List<Int> = emptyList(),
     val eqCenterFreqs: Map<Int, Int> = emptyMap(),
+    val extAmpAvailable: Boolean = false,
+    val extAmpOn: Boolean = false,
+    // False when the switch could not be saved (no WRITE_SECURE_SETTINGS): ivi-services will revert it.
+    val extAmpSaved: Boolean = true,
 )
 
 @HiltViewModel
@@ -39,6 +43,7 @@ class VehicleAudioViewModel
         application: Application,
     ) : AndroidViewModel(application) {
         private val client = JancarAudioClient(application)
+        private val system = JancarSystemClient(application)
 
         private val _state = MutableStateFlow(VehicleAudioState(supported = JancarAudioClient.isSupported(application)))
         val state: StateFlow<VehicleAudioState> = _state.asStateFlow()
@@ -64,7 +69,22 @@ class VehicleAudioViewModel
                         }
                     }
                 }
+                viewModelScope.launch {
+                    system.connected.collect { connected ->
+                        _state.update { it.copy(extAmpAvailable = connected, extAmpOn = system.isExternalAmpEnabled()) }
+                    }
+                }
                 client.bind()
+                system.bind()
+            }
+        }
+
+        fun setExternalAmp(on: Boolean) {
+            _state.update { it.copy(extAmpOn = on) }
+            viewModelScope.launch(Dispatchers.IO) {
+                val saved = system.saveExternalAmpEnabled(on)
+                system.setExternalAmpPower(on)
+                _state.update { it.copy(extAmpSaved = saved) }
             }
         }
 
@@ -122,6 +142,7 @@ class VehicleAudioViewModel
 
         override fun onCleared() {
             client.unbind()
+            system.unbind()
             wakeUp.close()
             super.onCleared()
         }

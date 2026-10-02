@@ -15,6 +15,7 @@
     <string name="section_vehicle_eq">Hardware equalizer</string>
     <string name="section_vehicle_sub">Loudness &amp; subwoofer</string>
     <string name="section_vehicle_delay">Speaker delay</string>
+    <string name="section_vehicle_ext_amp">External amplifier</string>
 
     <string name="label_vehicle_balance">Balance (left / right)</string>
     <string name="label_vehicle_fade">Fader (front / rear)</string>
@@ -31,10 +32,13 @@
     <string name="label_vehicle_delay_fr">Front right</string>
     <string name="label_vehicle_delay_rl">Rear left</string>
     <string name="label_vehicle_delay_rr">Rear right</string>
+    <string name="label_vehicle_ext_amp">External power amplifier enable</string>
+    <string name="vehicle_ext_amp_not_saved">The switch was sent but could not be saved: the head unit will revert it at the next MCU update. Grant the permission once with: adb shell pm grant com.llsl.viper4android android.permission.WRITE_SECURE_SETTINGS</string>
 
     <string name="desc_vehicle_fader">Moves the sound between the four speakers. This is done by the head unit audio processor, after Android and ViPER.&lt;br&gt;&lt;br&gt;• &lt;b&gt;Balance&lt;/b&gt; — left / right.&lt;br&gt;• &lt;b&gt;Fader&lt;/b&gt; — front / rear.</string>
     <string name="desc_vehicle_tone">Bass, middle and treble controls of the head unit audio processor. They apply to every source (radio, Bluetooth, Android), unlike ViPER effects which only process Android audio.</string>
     <string name="desc_vehicle_eq">Equalizer built into the head unit audio processor (DSP boards: ROHM BU32107, AKM AK7604). The number of bands and their frequencies come from the chip. On the ROHM BD37534 the equalizer is the Tone section (3 bands).</string>
     <string name="desc_vehicle_sub">Loudness (bass and treble boost at low volume), subwoofer level and filters, and listening position presets of the audio processor. Only the settings your chip supports are shown.</string>
     <string name="desc_vehicle_delay">Per-speaker delay (time alignment) so that the sound of every speaker reaches the listening position at the same time. Only available on DSP boards (ROHM BU32107, AKM AK7604).</string>
+    <string name="desc_vehicle_ext_amp">Turns on the remote (REM) output that powers up an external amplifier, usually the blue/white wire of the harness. Same setting as \"External Power Amplifier Enable\" in the head unit settings: it is sent to the MCU and applied again at every ignition.</string>
 </resources>

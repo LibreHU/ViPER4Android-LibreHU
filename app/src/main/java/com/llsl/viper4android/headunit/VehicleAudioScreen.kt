@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Equalizer
 import androidx.compose.material.icons.filled.GraphicEq
+import androidx.compose.material.icons.filled.PowerSettingsNew
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.SettingsBackupRestore
 import androidx.compose.material.icons.filled.SpeakerGroup
@@ -203,6 +204,33 @@ private fun VehicleAudioContent(
                                 else -> R.string.label_vehicle_position
                             }
                         ParamSlider(stringResource(label), param, viewModel)
+                    }
+                }
+            }
+        }
+
+        if (state.extAmpAvailable) {
+            item {
+                EffectSection(
+                    title = stringResource(R.string.section_vehicle_ext_amp),
+                    enabled = true,
+                    onEnabledChange = {},
+                    descriptionRes = R.string.desc_vehicle_ext_amp,
+                    icon = Icons.Default.PowerSettingsNew,
+                    hasEnableSwitch = false,
+                    initiallyExpanded = true,
+                ) {
+                    LabeledSwitch(
+                        label = stringResource(R.string.label_vehicle_ext_amp),
+                        checked = state.extAmpOn,
+                        onCheckedChange = viewModel::setExternalAmp,
+                    )
+                    if (!state.extAmpSaved) {
+                        Text(
+                            text = stringResource(R.string.vehicle_ext_amp_not_saved),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.error,
+                        )
                     }
                 }
             }

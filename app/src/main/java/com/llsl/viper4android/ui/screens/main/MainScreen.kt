@@ -54,7 +54,7 @@ import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.llsl.viper4android.R
 import com.llsl.viper4android.effect.EffectState
-import com.llsl.viper4android.headunit.JancarAudioClient
+import com.llsl.viper4android.headunit.LibreHuClient
 import com.llsl.viper4android.ui.components.UiDimens
 import com.llsl.viper4android.ui.screens.debug.DebugLogDialog
 import com.llsl.viper4android.ui.screens.device.DeviceDialog
@@ -109,7 +109,7 @@ fun MainScreen(
             }
         }
 
-    val headUnitSupported = remember { JancarAudioClient.isSupported(context) }
+    val headUnitSupported = remember { LibreHuClient.isSupported(context) }
 
     val clearAllProgressStr = stringResource(R.string.preset_clear_all_progress)
     val clearedStr = stringResource(R.string.preset_cleared)

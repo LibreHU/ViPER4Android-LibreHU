@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- LibreHU: head unit audio processor screen (Jancar ivi-services, IAudio). -->
+<!-- LibreHU: head unit audio processor screen (LibreHU-service). -->
 <resources>
     <string name="vehicle_title">Vehicle audio</string>
     <string name="vehicle_open">Vehicle audio</string>
@@ -7,38 +7,32 @@
     <string name="vehicle_reload">Reload from head unit</string>
     <string name="vehicle_reset">Reset to defaults</string>
     <string name="vehicle_center">Center</string>
-    <string name="vehicle_not_supported">Jancar ivi-services not found. This screen controls the audio processor of a Jancar head unit (ROHM BD37534 / BU32107, AKM AK7604) and is not available on this device.</string>
-    <string name="vehicle_connecting">Connecting to ivi-services…</string>
+    <string name="vehicle_not_supported">LibreHU-service not found. This screen controls the audio processor of a Jancar / Autochips head unit (ROHM BD37534) through LibreHU-service: https://github.com/LibreHU/LibreHU-service</string>
+    <string name="vehicle_connecting">Connecting to LibreHU-service…</string>
+    <string name="vehicle_not_running">LibreHU-service is not driving the hardware (%1$s). Settings are saved and applied when it starts. If Jancar ivi-services is still enabled, disable it: adb shell pm disable-user --user 0 com.jancar.services</string>
+    <string name="vehicle_acc_off">Ignition is off: the audio processor stays muted.</string>
 
+    <string name="section_vehicle_volume">Volume</string>
     <string name="section_vehicle_fader">Fader / Balance</string>
     <string name="section_vehicle_tone">Tone</string>
-    <string name="section_vehicle_eq">Hardware equalizer</string>
     <string name="section_vehicle_sub">Loudness &amp; subwoofer</string>
-    <string name="section_vehicle_delay">Speaker delay</string>
     <string name="section_vehicle_ext_amp">External amplifier</string>
 
+    <string name="label_vehicle_volume">Master volume</string>
+    <string name="label_vehicle_mute">Mute</string>
     <string name="label_vehicle_balance">Balance (left / right)</string>
     <string name="label_vehicle_fade">Fader (front / rear)</string>
     <string name="label_vehicle_bass">Bass</string>
     <string name="label_vehicle_middle">Middle</string>
     <string name="label_vehicle_treble">Treble</string>
     <string name="label_vehicle_loudness">Loudness</string>
-    <string name="label_vehicle_position">Listening position</string>
     <string name="label_vehicle_subwoofer">Subwoofer level</string>
     <string name="label_vehicle_sub_switch">Subwoofer output</string>
-    <string name="label_vehicle_sub_lpf">Subwoofer low-pass</string>
-    <string name="label_vehicle_sub_hpf">Subwoofer high-pass</string>
-    <string name="label_vehicle_delay_fl">Front left</string>
-    <string name="label_vehicle_delay_fr">Front right</string>
-    <string name="label_vehicle_delay_rl">Rear left</string>
-    <string name="label_vehicle_delay_rr">Rear right</string>
     <string name="label_vehicle_ext_amp">External power amplifier enable</string>
-    <string name="vehicle_ext_amp_not_saved">The switch was sent but could not be saved: the head unit will revert it at the next MCU update. Grant the permission once with: adb shell pm grant com.llsl.viper4android android.permission.WRITE_SECURE_SETTINGS</string>
 
+    <string name="desc_vehicle_volume">Master volume of the head unit audio processor, after Android and ViPER. It applies to every source.</string>
     <string name="desc_vehicle_fader">Moves the sound between the four speakers. This is done by the head unit audio processor, after Android and ViPER.&lt;br&gt;&lt;br&gt;• &lt;b&gt;Balance&lt;/b&gt; — left / right.&lt;br&gt;• &lt;b&gt;Fader&lt;/b&gt; — front / rear.</string>
-    <string name="desc_vehicle_tone">Bass, middle and treble controls of the head unit audio processor. They apply to every source (radio, Bluetooth, Android), unlike ViPER effects which only process Android audio.</string>
-    <string name="desc_vehicle_eq">Equalizer built into the head unit audio processor (DSP boards: ROHM BU32107, AKM AK7604). The number of bands and their frequencies come from the chip. On the ROHM BD37534 the equalizer is the Tone section (3 bands).</string>
-    <string name="desc_vehicle_sub">Loudness (bass and treble boost at low volume), subwoofer level and filters, and listening position presets of the audio processor. Only the settings your chip supports are shown.</string>
-    <string name="desc_vehicle_delay">Per-speaker delay (time alignment) so that the sound of every speaker reaches the listening position at the same time. Only available on DSP boards (ROHM BU32107, AKM AK7604).</string>
-    <string name="desc_vehicle_ext_amp">Turns on the remote (REM) output that powers up an external amplifier, usually the blue/white wire of the harness. Same setting as \"External Power Amplifier Enable\" in the head unit settings: it is sent to the MCU and applied again at every ignition.</string>
+    <string name="desc_vehicle_tone">Bass, middle and treble controls of the head unit audio processor (2 dB per step). They apply to every source, unlike ViPER effects which only process Android audio.</string>
+    <string name="desc_vehicle_sub">Loudness (bass and treble boost at low volume), subwoofer output (low-pass at 120 Hz) and subwoofer level (−5 to +7 dB).</string>
+    <string name="desc_vehicle_ext_amp">Turns on the remote (REM) output that powers up an external amplifier, usually the blue/white wire of the harness. LibreHU-service switches it on with the ignition when enabled.</string>
 </resources>

@@ -33,6 +33,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ViPER4Android"
         tools:targetApi="33">
+        <!-- Single-colour icon: LibreHU Launcher draws it in the colours of its theme. -->
+        <meta-data
+            android:name="org.librehu.themed_icon"
+            android:resource="@drawable/ic_launcher_monochrome" />
+
 
         <activity
             android:name=".ui.MainActivity"
